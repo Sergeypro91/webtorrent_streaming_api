@@ -5,6 +5,7 @@
 .vsCode
 .idea
 node_modules
+videoSample
 
 # Files
 .env

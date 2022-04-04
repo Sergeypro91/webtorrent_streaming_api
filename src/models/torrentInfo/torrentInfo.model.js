@@ -1,35 +1,35 @@
 const WebTorrent = require('webtorrent');
-const ffmpeg = require('fluent-ffmpeg');
 
-async function getTorrent(link) {
-    return new Promise((resp, rej) => {
+function getTorrent(link) {
+    return new Promise((resolve, reject) => {
         const client = new WebTorrent();
 
         client.add(link, (torrent) => {
             // Получаем массив файлов в торренте
-            const torentFiles = torrent.files;
+            const torrentFiles = torrent.files;
 
             // Помечаем торрент как не "выбранный"
             torrent.deselect(0, torrent.pieces.length - 1, false);
 
             // Убираем все вложенные файлы из загрузки
-            torentFiles.map((file) => {
+            torrentFiles.map((file) => {
                 file.deselect();
             });
-        });
 
-        client.on('torrent', (torrent) => {
-            resp(torrent);
+            resolve(torrent);
 
             setTimeout(() => {
-                client.destroy((err) => {
-                    console.log('Client successfully destroyed');
+                client.destroy(() => {
+                    console.log(
+                        '\x1b[36m%s\x1b[36m',
+                        'WebTorrent client, successfully destroyed !',
+                    );
                 });
             });
         });
 
         client.on('error', (err) => {
-            rej(err);
+            reject(err);
         });
     });
 }

@@ -2,8 +2,8 @@ const express = require('express');
 
 const { httpGetTorrentInfo } = require('./torrentInfo.controller');
 
-const torrenInfoRouter = express.Router();
+const torrentInfoRouter = express.Router();
 
-torrenInfoRouter.post('/:link', httpGetTorrentInfo);
+torrentInfoRouter.post('/', httpGetTorrentInfo);
 
-module.exports = torrenInfoRouter;
+module.exports = torrentInfoRouter;
