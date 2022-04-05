@@ -6,7 +6,7 @@ function createVideoThumb(filePath, fileName, fileDir) {
     return new Promise((resolve, reject) => {
         ffmpeg(filePath)
             .screenshots({
-                timestamps: ['2%'],
+                timestamps: [10],
                 filename: `${fileName}.jpg`,
                 folder: fileDir,
                 size: '480x?',

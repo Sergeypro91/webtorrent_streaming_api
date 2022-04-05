@@ -1,11 +1,11 @@
 # OS
-.DS_STORE
+**/.DS_STORE
 
 # Folder
-.vsCode
-.idea
-node_modules
-videoSample
+**/.vsCode
+**/.idea
+**/node_modules
+**/videoSample
 
 # Files
-.env
+**/.env
